@@ -30,4 +30,4 @@ An educational site for 9th–10th students
 
 ## Always preparing a new plan
 
-![Plan Image](htcode.png)
+![Plan Image](dot.png)
