@@ -1,2 +1,2 @@
-# catcchdot
+# catchdot
 intresting game forever
