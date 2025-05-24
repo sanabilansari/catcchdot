@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catch the Box Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    #gameArea {
+      width: 300px;
+      height: 300px;
+      border: 2px solid #333;
+      position: relative;
+      background: #fff;
+    }
+    .box {
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      position: absolute;
+      border-radius: 5px;
+    }
+    #score {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Catch the Red Box!</h1>
+  <div id="gameArea"></div>
+  <div id="score">Score: 0</div>
+  <button onclick="startGame()">Start Game</button>
+
+  <script>
+    const gameArea = document.getElementById('gameArea');
+    const scoreDisplay = document.getElementById('score');
+    let score = 0;
+    let box;
+    let gameInterval;
+
+    function startGame() {
+      score = 0;
+      scoreDisplay.textContent = 'Score: 0';
+      if (box) box.remove();
+      box = document.createElement('div');
+      box.classList.add('box');
+      box.addEventListener('click', () => {
+        score++;
+        scoreDisplay.textContent = 'Score: ' + score;
+        moveBox();
+      });
+      gameArea.appendChild(box);
+      moveBox();
+
+      clearInterval(gameInterval);
+      gameInterval = setInterval(moveBox, 1500);
+    }
+
+    function moveBox() {
+      const x = Math.floor(Math.random() * (gameArea.clientWidth - 30));
+      const y = Math.floor(Math.random() * (gameArea.clientHeight - 30));
+      box.style.left = x + 'px';
+      box.style.top = y + 'px';
+    }
+  </script>
+</body>
+</html>
